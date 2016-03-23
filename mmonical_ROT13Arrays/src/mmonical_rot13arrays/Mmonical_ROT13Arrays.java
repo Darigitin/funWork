@@ -86,7 +86,7 @@ public class Mmonical_ROT13Arrays {
      */
     public static String convertSentence(String sentence){
         char c;
-        int decChar;
+        int decChar, counter = 0;
         String newSentence = "";
         for (int x = 0; x < sentence.length(); x++){
             c = sentence.charAt(x);
@@ -99,8 +99,10 @@ public class Mmonical_ROT13Arrays {
             if (decChar > 64){
                 if (decChar < 91){
                     newSentence = newSentence + charConvert(c);
-                    if (newSentence.length() % 5 == 0){
+                    counter++;
+                    if (counter == 5){
                         newSentence = newSentence + " ";
+                        counter = 0;
                     }
                 }
             }
