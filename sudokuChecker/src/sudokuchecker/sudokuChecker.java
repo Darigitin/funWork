@@ -188,15 +188,15 @@ public class sudokuChecker {
                for (int k = i*3; k < (i+1) * 3 - 1; k++){
                    for (int l = j*3; l < (j+1) * 3 - 1; l++){
                      //  System.out.printf("grid[%d][%d]\n", k,l);
-                       for (int m = i*3; m <= (i+1) * 3 - 1; m++){
-                           for (int n = j*3; n <= (j+1) * 3 - 1; n++){
-                               if (!(k == m && l == n)){
+                       for (int m = k; m <= (i+1) * 3 - 1; m++){
+                           for (int n = l; n <= (j+1) * 3 - 1; n++){
+                                if (!(k == m && l == n)){
                                    // System.out.printf("(grid[%d][%d] = %d) =? (grid[%d][%d] = %d)\n", k, l, grid[k][l], m, n, grid[m][n]);
                                     if (grid[k][l] == grid[m][n]){
                                         boo = false;
                                         boo2 = false;
                                     }
-                               }
+                                }
                             }
                         }
                     }
