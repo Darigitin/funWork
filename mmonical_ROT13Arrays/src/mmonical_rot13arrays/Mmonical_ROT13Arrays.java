@@ -35,7 +35,7 @@ public class Mmonical_ROT13Arrays {
             System.out.printf("Sentence %d> ",x+1);
             sentences[x] = get.nextLine();
         }
-        System.out.println("");
+        System.out.println('');
     }
     /**
      * This method displays all of the elements of the array of
