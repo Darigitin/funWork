@@ -3,6 +3,8 @@
 #include <string.h>
 
 #define LMAX 20
+ssize_t getline (char **ln, size_t *n, FILE *fp);
+char * strdup (const char *ln);
 
 int main (int argc, char **argv) {
 
@@ -12,31 +14,18 @@ int main (int argc, char **argv) {
         return 1;
     }
 
-    char **inputArray, **outputArray, **tmp;    /* array of pointers to char        */
-    char *ln;                                   /* NULL forces getline to allocate  */
-    size_t n;                                   /* buf size, 0 use getline default  */
-    ssize_t nchr;                               /* number of chars actually read    */
-    size_t idx, idy;                                 /* array index for number of lines  */
-    size_t it, it2;                                  /* general iterator variable        */
-    size_t lmax;                                /* current array pointer allocation */
-    FILE *fp;                                   /* file pointer                     */
-    int resizeNum;                              /* line resize value                */
-    const char s[2] = " ";                      /* String s for strtok delim        */
+    char **inputArray, **outputArray, **tmp;        /* array of pointers to char        */
+    char *ln = NULL;                                /* NULL forces getline to allocate  */
+    size_t n = 0;                                   /* buf size, 0 use getline default  */
+    ssize_t nchr;                                   /* number of chars actually read    */
+    size_t idx = 0, idy = 0;                        /* array index for number of lines  */
+    size_t it, it2;                                 /* general iterator variable        */
+    size_t lmax = LMAX;                             /* current array pointer allocation */
+    FILE *fp;                                       /* file pointer                     */
+    int resizeNum;                                  /* line resize value                */
+    const char s[2] = " ";                          /* String s for strtok delim        */
     size_t wordSize;
     int charNum;
-
-    inputArray = NULL;
-    ln = NULL;
-    n = 0;
-    nchr = 0;
-    idx = 0;
-    it = 0;
-    lmax = LMAX;
-    fp = NULL;
-    tmp = NULL;
-    wordSize = 0;
-    charNum = 0;
-    idy = 0;
 
     if (!(fp = fopen (argv[2], "r"))) { /* open file for reading    */
         fprintf (stderr, "error: file open failed '%s'.", argv[2]);
@@ -86,7 +75,7 @@ int main (int argc, char **argv) {
         }
     }
 
-    if (fp) fclose (fp);        /* close file */
+    fclose (fp);                /* close file */
     if (ln) free (ln);          /* free memory allocated to ln  */
 
     /*
@@ -100,7 +89,7 @@ int main (int argc, char **argv) {
     }
 
     for(it = 0; it < LMAX; it++){
-        if(!(outputArray[it] = calloc(resizeNum, sizeof(char*)))){
+        if(!(outputArray[it] = calloc((size_t) resizeNum, sizeof(char*)))){
             fprintf(stderr, "error: memory allocation failed.");
             return 1;
         }
@@ -109,13 +98,11 @@ int main (int argc, char **argv) {
     charNum = resizeNum - 1;
     lmax = LMAX;
     for (it = 0; it < idx; it++){
-      //  printf("%s\n", inputArray[it]);
-      //  printf("%zu < %zu", it, idx);
         ln = strtok(inputArray[it], s);
         while ( ln != NULL){
             wordSize = strlen(ln);
             int test;
-            test = charNum - wordSize - 1;
+            test = (int) (charNum - wordSize - 1);
             if (test < 0){
                 strcat(outputArray[idy], "\n");
                 printf("%s", outputArray[idy]);
@@ -127,7 +114,7 @@ int main (int argc, char **argv) {
                     outputArray = tmp;
                     lmax *= 2;
                     for(it2 = idy; it2 < lmax; it2++){
-                        if(!(outputArray[it2] = calloc(resizeNum, sizeof(char*)))){
+                        if(!(outputArray[it2] = calloc((size_t) resizeNum, sizeof(char*)))){
                             fprintf(stderr, "error: memory allocation failed.");
                             return 1;
                         }
@@ -143,8 +130,6 @@ int main (int argc, char **argv) {
     }
     printf("%s\n", outputArray[idy]);
 
-  //  printf("%s\n", inputArray[it]);
-  //  printf("%zu < %zu", it, idx);
 
 
     printf ("\nLines in file:\n\n");    /* print lines in file  */
