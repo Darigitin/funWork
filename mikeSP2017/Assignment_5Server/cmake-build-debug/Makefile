@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Assignment_5
+# Target rules for targets named Assignment_5Server
 
 # Build rule for target.
-Assignment_5: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Assignment_5
-.PHONY : Assignment_5
+Assignment_5Server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Assignment_5Server
+.PHONY : Assignment_5Server
 
 # fast build rule for target.
-Assignment_5/fast:
-	$(MAKE) -f CMakeFiles/Assignment_5.dir/build.make CMakeFiles/Assignment_5.dir/build
-.PHONY : Assignment_5/fast
+Assignment_5Server/fast:
+	$(MAKE) -f CMakeFiles/Assignment_5Server.dir/build.make CMakeFiles/Assignment_5Server.dir/build
+.PHONY : Assignment_5Server/fast
 
 main.o: main.c.o
 
@@ -129,7 +129,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/Assignment_5.dir/build.make CMakeFiles/Assignment_5.dir/main.c.o
+	$(MAKE) -f CMakeFiles/Assignment_5Server.dir/build.make CMakeFiles/Assignment_5Server.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -138,7 +138,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/Assignment_5.dir/build.make CMakeFiles/Assignment_5.dir/main.c.i
+	$(MAKE) -f CMakeFiles/Assignment_5Server.dir/build.make CMakeFiles/Assignment_5Server.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -147,7 +147,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/Assignment_5.dir/build.make CMakeFiles/Assignment_5.dir/main.c.s
+	$(MAKE) -f CMakeFiles/Assignment_5Server.dir/build.make CMakeFiles/Assignment_5Server.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -158,7 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Assignment_5"
+	@echo "... Assignment_5Server"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

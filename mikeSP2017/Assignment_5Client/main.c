@@ -4,16 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
-#include <sys/types.h>
+#include <sys/ioctl.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
-#define PORT_NUM 3004
-//int cmpfunc (const void * a, const void * b){
-//    const char **ia = (const char **) a;
-//    const char **ib = (const char **) b;
-//    return strcmp(*ia, *ib);
-//}
+#define PORT_NUM 3011
+
+int strcmp(const char *str1, const char *str2);
 
 void error(char *msg)
 {
@@ -25,7 +22,7 @@ int main(int argc, char *argv[])
 {
 	/*set up ints for socket file descriptor
 	  port number and return of read/write*/
-	int sockfd, portno, n;
+	int sockfd, portno, n, len;
 	/*structure for server info*/
 	struct sockaddr_in serv_addr;
 	/*used to hold the return of the function
@@ -36,8 +33,8 @@ int main(int argc, char *argv[])
 	/*for our message*/
 	char buffer[256];
 	/*convert our port number*/
-//	portno = 2000;
 	portno = PORT_NUM;
+    len = 0;
 	/*create the socket*/
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	/*make sure it was made*/
@@ -47,8 +44,7 @@ int main(int argc, char *argv[])
 	  resolves it to an address, there is a similar
 	  function, gethostbyaddr that takes an address
 	  and returns the same struct, struct hostent*/
-	//server = gethostbyname("localhost");
-	server = gethostbyname(argv[1]);
+	server = gethostbyname("localhost");
 	/*make sure the host exists*/
 	if (server == NULL) {
 		fprintf(stderr,"ERROR, no such host\n");
@@ -80,7 +76,17 @@ int main(int argc, char *argv[])
             error("ERROR writing to socket");
         memset(buffer, 0, 256);
         /*await an incoming message, read stops all process*/
-        n = read(sockfd,buffer,255);
+        //ioctl(sockfd,FIONREAD, &len);
+        //if (len > 0) {
+		n = read(sockfd, buffer, 255);
+		len = atoi(buffer);
+		printf("%s\n", buffer);
+		if (len > 0){
+			write(sockfd, "OK", strlen("OK"));
+			read(sockfd,buffer, len);
+		}
+			printf("%s\n", buffer);
+		//}
         if (n < 0)
             error("ERROR reading from socket");
         printf("%s\n",buffer);

@@ -15,10 +15,10 @@
 ########################
 
 //Value Computed by CMake
-Assignment_5_BINARY_DIR:STATIC=/cygdrive/c/Users/Matt/Documents/Projects/funWork/mikeSP2017/Assignment_5Server/cmake-build-debug
+Assignment_5Server_BINARY_DIR:STATIC=/cygdrive/c/Users/Matt/Documents/Projects/funWork/mikeSP2017/Assignment_5Server/cmake-build-debug
 
 //Value Computed by CMake
-Assignment_5_SOURCE_DIR:STATIC=/cygdrive/c/Users/Matt/Documents/Projects/funWork/mikeSP2017/Assignment_5Server
+Assignment_5Server_SOURCE_DIR:STATIC=/cygdrive/c/Users/Matt/Documents/Projects/funWork/mikeSP2017/Assignment_5Server
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar.exe
@@ -127,7 +127,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy.exe
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump.exe
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Assignment_5
+CMAKE_PROJECT_NAME:STATIC=Assignment_5Server
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib.exe
