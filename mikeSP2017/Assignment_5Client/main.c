@@ -4,11 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
-#include <sys/ioctl.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
-#define PORT_NUM 3011
+#define PORT_NUM 3001
 
 int strcmp(const char *str1, const char *str2);
 
@@ -31,10 +30,10 @@ int main(int argc, char *argv[])
 	struct hostent *server;
 
 	/*for our message*/
-	char buffer[256];
+	char* buffer;
+    buffer = calloc(256, sizeof(char));
 	/*convert our port number*/
 	portno = PORT_NUM;
-    len = 0;
 	/*create the socket*/
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	/*make sure it was made*/
@@ -70,26 +69,23 @@ int main(int argc, char *argv[])
         memset(buffer, 0, 256);
         fgets(buffer,255,stdin);
         /*send the message to the socket*/
-        printf("length is %d\n", (int)strlen(buffer));
-        n = write(sockfd,buffer,strlen(buffer));
+        n = (int) write(sockfd, buffer, strlen(buffer));
         if (n < 0)
             error("ERROR writing to socket");
         memset(buffer, 0, 256);
-        /*await an incoming message, read stops all process*/
-        //ioctl(sockfd,FIONREAD, &len);
-        //if (len > 0) {
-		n = read(sockfd, buffer, 255);
+		read(sockfd, buffer, 255);
+        if(strcmp(buffer, "stop") == 0)
+            break;
 		len = atoi(buffer);
-		printf("%s\n", buffer);
-		if (len > 0){
-			write(sockfd, "OK", strlen("OK"));
-			read(sockfd,buffer, len);
-		}
-			printf("%s\n", buffer);
-		//}
+        memset(buffer, 0, 256);
+        n = (int) read(sockfd, buffer, (size_t) len);
+
+
+
         if (n < 0)
             error("ERROR reading from socket");
-        printf("%s\n",buffer);
-    } while((strcmp(buffer, "stop") != 0));
+        if (n != 0)
+            printf("%s\n",buffer);
+    } while(1);
 	return 0;
 }
