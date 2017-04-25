@@ -22,6 +22,7 @@ typedef struct node {
 
 struct node *GPAroot, *SIDroot, *Lnameroot, *Fnameroot, *deleteNode;
 char* message;
+size_t messageSize, sizeRemaining;
 
 struct node *newNode(char* lname, char* fname, char initial, unsigned long SID, float GPA){
     struct node *temp = (struct node *)malloc(sizeof(struct node));
@@ -74,123 +75,119 @@ struct node* GPAInsert(struct node* node, char* lname, char* fname, char initial
     return node;
 }
 
-void lNameInOrder(struct node *root, int messageSize, int sizeRemaining){
+void lNameInOrder(struct node *root){
     char *temp;
     int t;
     temp = calloc(48, sizeof(char));
     if(root != NULL){
-        lNameInOrder(root->left, messageSize, sizeRemaining);
+        lNameInOrder(root->left);
         snprintf(temp, 48, "| %05lu | %-9s | %-9s | %c | %.2f |\n", root->SREC.SID, root->SREC.lname,
                  root->SREC.fname, root->SREC.initial, root->SREC.GPA);
         if(sizeRemaining < 48){
             message =  realloc(message, messageSize * 2 * sizeof *message);
-            t = messageSize - sizeRemaining;
+            t = (int) (messageSize - sizeRemaining);
             messageSize *= 2;
-            sizeRemaining = messageSize - t;
+            sizeRemaining = (size_t) (messageSize - t);
 
         }
         strcat(message, temp);
         sizeRemaining -= 48;
-        lNameInOrder(root->right, messageSize, sizeRemaining);
+        lNameInOrder(root->right);
     }
 }
 
-void fNameInOrder(struct node *root, int messageSize, int sizeRemaining){
+void fNameInOrder(struct node *root){
     char *temp;
     int t;
     temp = calloc(48, sizeof(char));
     if(root != NULL){
-        fNameInOrder(root->left, messageSize, sizeRemaining);
+        fNameInOrder(root->left);
         snprintf(temp, 48, "| %05lu | %-9s | %-9s | %c | %.2f |\n", root->SREC.SID, root->SREC.lname,
                  root->SREC.fname, root->SREC.initial, root->SREC.GPA);
         if(sizeRemaining < 48){
             message =  realloc(message, messageSize * 2 * sizeof *message);
-            t = messageSize - sizeRemaining;
+            t = (int) (messageSize - sizeRemaining);
             messageSize *= 2;
-            sizeRemaining = messageSize - t;
+            sizeRemaining = (messageSize - t);
 
         }
         strcat(message, temp);
         sizeRemaining -= 48;
-        fNameInOrder(root->right, messageSize, sizeRemaining);
+        fNameInOrder(root->right);
     }
 }
 
-void SIDInOrder(struct node *root, int messageSize, int sizeRemaining){
+void SIDInOrder(struct node *root){
     char *temp;
     int t;
     temp = calloc(48, sizeof(char));
     if(root != NULL){
-        SIDInOrder(root->left, messageSize, sizeRemaining);
+        SIDInOrder(root->left);
         snprintf(temp, 48, "| %05lu | %-9s | %-9s | %c | %.2f |\n", root->SREC.SID, root->SREC.lname,
                  root->SREC.fname, root->SREC.initial, root->SREC.GPA);
         if(sizeRemaining < 48){
             message =  realloc(message, messageSize * 2 * sizeof *message);
-            t = messageSize - sizeRemaining;
+            t = (int) (messageSize - sizeRemaining);
             messageSize *= 2;
-            sizeRemaining = messageSize - t;
+            sizeRemaining =  (messageSize - t);
 
         }
         strcat(message, temp);
         sizeRemaining -= 48;
-        SIDInOrder(root->right, messageSize, sizeRemaining);
+        SIDInOrder(root->right);
     }
 }
 
-void GPAInOrder(struct node *root, int messageSize, int sizeRemaining){
+void GPAInOrder(struct node *root){
     char *temp;
     int t;
     temp = calloc(48, sizeof(char));
     if(root != NULL){
-        GPAInOrder(root->right, messageSize, sizeRemaining);
+        GPAInOrder(root->right);
         snprintf(temp, 48, "| %05lu | %-9s | %-9s | %c | %.2f |\n", root->SREC.SID, root->SREC.lname,
                  root->SREC.fname, root->SREC.initial, root->SREC.GPA);
         if(sizeRemaining < 48){
             message =  realloc(message, messageSize * 2 * sizeof *message);
-            t = messageSize - sizeRemaining;
+            t = (int) (messageSize - sizeRemaining);
             messageSize *= 2;
-            sizeRemaining = messageSize - t;
+            sizeRemaining =  (messageSize - t);
 
         }
         strcat(message, temp);
         sizeRemaining -= 48;
-        GPAInOrder(root->left, messageSize, sizeRemaining);
+        GPAInOrder(root->left);
     }
 }
 
-void getLname(int messageSize){
-    int sizeRemaining;
+void getLname(){
     strcpy(message, "| SID   | Lname     | Fname     | M | GPA  |\n");
     strcat(message, "+-------+-----------+-----------+---+------+\n");
-    sizeRemaining = messageSize - 141;
-    lNameInOrder(Lnameroot, messageSize, sizeRemaining);
+    sizeRemaining = (size_t) (messageSize - 141);
+    lNameInOrder(Lnameroot);
     strcat(message, "+-------+-----------+-----------+---+------+");
 }
 
-void getFname(int messageSize){
-    int sizeRemaining;
+void getFname(){
     strcpy(message, "| SID   | Lname     | Fname     | M | GPA  |\n");
     strcat(message, "+-------+-----------+-----------+---+------+\n");
-    sizeRemaining = messageSize - 141;
-    fNameInOrder(Fnameroot, messageSize, sizeRemaining);
+    sizeRemaining = (size_t) (messageSize - 141);
+    fNameInOrder(Fnameroot);
     strcat(message, "+-------+-----------+-----------+---+------+");
 }
 
-void getSID(int messageSize){
-    int sizeRemaining;
+void getSID(){
     strcpy(message, "| SID   | Lname     | Fname     | M | GPA  |\n");
     strcat(message, "+-------+-----------+-----------+---+------+\n");
-    sizeRemaining = messageSize - 141;
-    SIDInOrder(SIDroot, messageSize, sizeRemaining);
+    sizeRemaining = (size_t) (messageSize - 141);
+    SIDInOrder(SIDroot);
     strcat(message, "+-------+-----------+-----------+---+------+");
 }
 
-void getGPA(int messageSize){
-    int sizeRemaining;
+void getGPA(){
     strcpy(message, "| SID   | Lname     | Fname     | M | GPA  |\n");
     strcat(message, "+-------+-----------+-----------+---+------+\n");
-    sizeRemaining = messageSize - 141;
-    GPAInOrder(GPAroot, messageSize, sizeRemaining);
+    sizeRemaining = (size_t) (messageSize - 141);
+    GPAInOrder(GPAroot);
     strcat(message, "+-------+-----------+-----------+---+------+");
 }
 
@@ -236,10 +233,6 @@ struct node* deleteSID(struct node* root, unsigned long sid)
         // to be deleted
     else
     {
-        deleteNode = newNode("", "", 0, 0, 0);
-        strncpy(deleteNode->SREC.lname, root->SREC.lname, 9);
-        strncpy(deleteNode->SREC.fname, root->SREC.fname, 9);
-        deleteNode->SREC.GPA = root->SREC.GPA;
         // node with only one child or no child
         if (root->left == NULL)
         {
@@ -262,6 +255,7 @@ struct node* deleteSID(struct node* root, unsigned long sid)
         root->SREC.SID = temp->SREC.SID;
         root->SREC.GPA = temp->SREC.GPA;
         strcpy(root->SREC.lname, temp->SREC.lname);
+        root->SREC.initial = temp->SREC.initial;
         strcpy(root->SREC.fname, temp->SREC.fname);
 
         // Delete the inorder successor
@@ -309,6 +303,7 @@ struct node* deleteLname(struct node* root, char* lname)
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
         root->SREC.GPA = temp->SREC.GPA;
+        root->SREC.initial = temp->SREC.initial;
         strcpy(root->SREC.lname, temp->SREC.lname);
         strcpy(root->SREC.fname, temp->SREC.fname);
 
@@ -325,12 +320,12 @@ struct node* deleteFname(struct node* root, char* fname)
 
     // If the key to be deleted is smaller than the root's key,
     // then it lies in left subtree
-    if ( (strncmp(fname, root->SREC.lname, 9) < 0))
+    if ( (strncmp(fname, root->SREC.fname, 9) < 0))
         root->left = deleteFname(root->left, fname);
 
         // If the key to be deleted is greater than the root's key,
         // then it lies in right subtree
-    else if ((strncmp(fname, root->SREC.lname, 9) > 0))
+    else if ((strncmp(fname, root->SREC.fname, 9) > 0))
         root->right = deleteLname(root->right, fname);
 
         // if key is same as root's key, then This is the node
@@ -358,6 +353,7 @@ struct node* deleteFname(struct node* root, char* fname)
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
         root->SREC.GPA = temp->SREC.GPA;
+        root->SREC.initial = temp->SREC.initial;
         strcpy(root->SREC.lname, temp->SREC.lname);
         strcpy(root->SREC.fname, temp->SREC.fname);
 
@@ -379,7 +375,7 @@ struct node* deleteGPA(struct node* root, float GPA)
 
         // If the key to be deleted is greater than the root's key,
         // then it lies in right subtree
-    else if (GPA > root->SREC.SID)
+    else if (GPA > root->SREC.GPA)
         root->right = deleteGPA(root->right, GPA);
 
         // if key is same as root's key, then This is the node
@@ -407,6 +403,7 @@ struct node* deleteGPA(struct node* root, float GPA)
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
         root->SREC.GPA = temp->SREC.GPA;
+        root->SREC.initial = temp->SREC.initial;
         strcpy(root->SREC.lname, temp->SREC.lname);
         strcpy(root->SREC.fname, temp->SREC.fname);
 
@@ -416,11 +413,38 @@ struct node* deleteGPA(struct node* root, float GPA)
     return root;
 }
 
+struct node* findDeleteNode(struct node* root, unsigned long sid){
+    struct node* temp;
+    if (root == NULL)
+        return NULL;
+    if (sid < root->SREC.SID)
+        temp = findDeleteNode(root->left, sid);
+    else if (sid > root->SREC.SID)
+        temp = findDeleteNode(root->right, sid);
+    else
+        return root;
+    return temp;
+}
+
+
 int delete(unsigned long sid){
-    deleteSID(SIDroot, sid);
-    deleteLname(Lnameroot, deleteNode->SREC.lname);
-    deleteFname(Fnameroot, deleteNode->SREC.fname);
-    deleteGPA(GPAroot, deleteNode->SREC.GPA);
+    unsigned long deleteSid;
+    char* lname, *fname;
+    float gpa;
+
+    lname = calloc(10, sizeof(char));
+    fname = calloc(10, sizeof(char));
+    deleteNode = findDeleteNode(SIDroot, sid);
+    if (deleteNode == NULL)
+        return 0;
+    deleteSid = deleteNode->SREC.SID;
+    strcpy(lname, deleteNode->SREC.lname);
+    strcpy(fname, deleteNode->SREC.fname);
+    gpa = deleteNode->SREC.GPA;
+    SIDroot = deleteSID(SIDroot, deleteSid);
+    Lnameroot = deleteLname(Lnameroot, lname);
+    Fnameroot = deleteFname(Fnameroot, fname);
+    GPAroot = deleteGPA(GPAroot, gpa);
     return 1;
 }
 
@@ -483,6 +507,8 @@ int main(int argc, char *argv[])
     int n;
     GPAroot = SIDroot = Lnameroot = Fnameroot = NULL;
     loadFile();
+    messageSize = 256;
+    message = calloc(messageSize, sizeof(char));
 
     /*STEP 1********************************************
      int socket(int domain, int type, int protocol);*/
@@ -534,8 +560,7 @@ int main(int argc, char *argv[])
     /*Communicate************************************/
     n = (int) read(newsockfd, buffer, 255);
     while ((strcmp(buffer, "stop\n") != 0)) {
-        size_t messageSize, t;
-        messageSize = 255;
+        size_t t;
         message = calloc(messageSize, sizeof(char));
         if (n < 0) error("ERROR reading from socket");
         printf("Here is the message: %s", buffer);
@@ -543,13 +568,13 @@ int main(int argc, char *argv[])
             strtok(buffer, " ");
             char* argument = strtok(NULL, " ");
             if (strcmp(argument, "lname\n") == 0)
-                getLname((int) messageSize);
+                getLname();
             else if (strcmp(argument, "fname\n") == 0)
-                getFname((int) messageSize);
+                getFname();
             else if (strcmp(argument, "SID\n") == 0)
-                getSID((int) messageSize);
+                getSID();
             else if (strcmp(argument, "GPA\n") == 0)
-                getGPA((int) messageSize);
+                getGPA();
             else
                 message = "Not a valid argument";
         } else if (strncmp(buffer, "put", 3) == 0){
@@ -579,9 +604,10 @@ int main(int argc, char *argv[])
         write(newsockfd, buffer, strlen(buffer));
         n = (int) write(newsockfd, message, t);
         memset(buffer, 0, 256);
+     //   memset(message, 0, messageSize);
         if (n < 0) error("ERROR writing to socket");
         n = (int) read(newsockfd, buffer, 255);
-        free(message);
+       // free(message);
     }
     write(newsockfd,"stop",strlen("stop"));
     saveFile();

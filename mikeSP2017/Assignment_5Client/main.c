@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
-#define PORT_NUM 3001
+#define PORT_NUM 3002
 
 int strcmp(const char *str1, const char *str2);
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 {
 	/*set up ints for socket file descriptor
 	  port number and return of read/write*/
-	int sockfd, portno, n, len;
+	int sockfd, portno, n, len, flag;
 	/*structure for server info*/
 	struct sockaddr_in serv_addr;
 	/*used to hold the return of the function
@@ -65,9 +65,12 @@ int main(int argc, char *argv[])
 		error("ERROR connecting");
     do {
         printf("Enter next command> ");
+        flag = 0;
         /*Retrieve a message to send from the user*/
         memset(buffer, 0, 256);
         fgets(buffer,255,stdin);
+        if(strncmp(buffer, "get", 3) == 0)
+            flag = 1;
         /*send the message to the socket*/
         n = (int) write(sockfd, buffer, strlen(buffer));
         if (n < 0)
@@ -79,12 +82,9 @@ int main(int argc, char *argv[])
 		len = atoi(buffer);
         memset(buffer, 0, 256);
         n = (int) read(sockfd, buffer, (size_t) len);
-
-
-
         if (n < 0)
             error("ERROR reading from socket");
-        if (n != 0)
+        if (n != 0 && flag == 1)
             printf("%s\n",buffer);
     } while(1);
 	return 0;
