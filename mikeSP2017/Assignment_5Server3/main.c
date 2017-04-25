@@ -18,7 +18,7 @@ typedef struct student {
 typedef struct node {
     struct student SREC;
     struct node *left, *right;
-};
+}node;
 
 struct node *GPAroot, *SIDroot, *Lnameroot, *Fnameroot, *deleteNode;
 char* message;
@@ -216,6 +216,7 @@ struct node * minValueNode(struct node* node)
 
 struct node* deleteSID(struct node* root, unsigned long sid)
 {
+    struct node* temp;
     // base case
     if (root == NULL) return root;
 
@@ -236,20 +237,20 @@ struct node* deleteSID(struct node* root, unsigned long sid)
         // node with only one child or no child
         if (root->left == NULL)
         {
-            struct node *temp = root->right;
+            temp = root->right;
             free(root);
             return temp;
         }
         else if (root->right == NULL)
         {
-            struct node *temp = root->left;
+            temp = root->left;
             free(root);
             return temp;
         }
 
         // node with two children: Get the inorder successor (smallest
         // in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        temp = minValueNode(root->right);
 
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
@@ -265,6 +266,7 @@ struct node* deleteSID(struct node* root, unsigned long sid)
 }
 struct node* deleteLname(struct node* root, char* lname)
 {
+    struct node *temp;
     // base case
     if (root == NULL) return root;
 
@@ -285,20 +287,20 @@ struct node* deleteLname(struct node* root, char* lname)
         // node with only one child or no child
         if (root->left == NULL)
         {
-            struct node *temp = root->right;
+            temp = root->right;
             free(root);
             return temp;
         }
         else if (root->right == NULL)
         {
-            struct node *temp = root->left;
+            temp = root->left;
             free(root);
             return temp;
         }
 
         // node with two children: Get the inorder successor (smallest
         // in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        temp = minValueNode(root->right);
 
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
@@ -315,6 +317,7 @@ struct node* deleteLname(struct node* root, char* lname)
 
 struct node* deleteFname(struct node* root, char* fname)
 {
+    struct node *temp;
     // base case
     if (root == NULL) return root;
 
@@ -335,20 +338,20 @@ struct node* deleteFname(struct node* root, char* fname)
         // node with only one child or no child
         if (root->left == NULL)
         {
-            struct node *temp = root->right;
+            temp = root->right;
             free(root);
             return temp;
         }
         else if (root->right == NULL)
         {
-            struct node *temp = root->left;
+            temp = root->left;
             free(root);
             return temp;
         }
 
         // node with two children: Get the inorder successor (smallest
         // in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        temp = minValueNode(root->right);
 
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
@@ -365,6 +368,7 @@ struct node* deleteFname(struct node* root, char* fname)
 
 struct node* deleteGPA(struct node* root, float GPA)
 {
+    struct node* temp;
     // base case
     if (root == NULL) return root;
 
@@ -385,20 +389,20 @@ struct node* deleteGPA(struct node* root, float GPA)
         // node with only one child or no child
         if (root->left == NULL)
         {
-            struct node *temp = root->right;
+            temp = root->right;
             free(root);
             return temp;
         }
         else if (root->right == NULL)
         {
-            struct node *temp = root->left;
+            temp = root->left;
             free(root);
             return temp;
         }
 
         // node with two children: Get the inorder successor (smallest
         // in the right subtree)
-        struct node* temp = minValueNode(root->right);
+        temp = minValueNode(root->right);
 
         // Copy the inorder successor's content to this node
         root->SREC.SID = temp->SREC.SID;
