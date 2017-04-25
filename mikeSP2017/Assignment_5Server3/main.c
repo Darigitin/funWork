@@ -329,7 +329,7 @@ struct node* deleteFname(struct node* root, char* fname)
         // If the key to be deleted is greater than the root's key,
         // then it lies in right subtree
     else if ((strncmp(fname, root->SREC.fname, 9) > 0))
-        root->right = deleteLname(root->right, fname);
+        root->right = deleteFname(root->right, fname);
 
         // if key is same as root's key, then This is the node
         // to be deleted
@@ -361,7 +361,7 @@ struct node* deleteFname(struct node* root, char* fname)
         strcpy(root->SREC.fname, temp->SREC.fname);
 
         // Delete the inorder successor
-        root->right = deleteLname(root->right, temp->SREC.fname);
+        root->right = deleteFname(root->right, temp->SREC.fname);
     }
     return root;
 }

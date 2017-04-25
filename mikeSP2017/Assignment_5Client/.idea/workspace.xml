@@ -12,8 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abc00c9a-e460-4085-adab-110316c3ed6d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/Assignment_5Server.exe" afterPath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/Assignment_5Server.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/CMakeFiles/Assignment_5Server.dir/main.c.o" afterPath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/CMakeFiles/Assignment_5Server.dir/main.c.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Assignment_5Server3/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Assignment_5Server3/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/database.bin" afterPath="$PROJECT_DIR$/../Assignment_5Server3/cmake-build-debug/database.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Assignment_5Server3/main.c" afterPath="$PROJECT_DIR$/../Assignment_5Server3/main.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -71,8 +74,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1431" />
-    <option name="y" value="34" />
+    <option name="x" value="-7" />
     <option name="width" value="1734" />
     <option name="height" value="1437" />
   </component>
@@ -307,16 +309,16 @@
       <workItem from="1492922721238" duration="8972000" />
       <workItem from="1492995556853" duration="4447000" />
       <workItem from="1493086801073" duration="3847000" />
-      <workItem from="1493090904696" duration="7192000" />
+      <workItem from="1493090904696" duration="8410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51035000" />
+    <option name="totallyTimeSpent" value="52253000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1431" y="34" width="1734" height="1437" extended-state="1" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1734" height="1437" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24970897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -324,7 +326,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32931423" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33383572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33383572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
